@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: point this at the real domain once it is connected in Vercel.
+Sitemap: https://REPLACE-WITH-YOUR-DOMAIN.com/sitemap.xml
