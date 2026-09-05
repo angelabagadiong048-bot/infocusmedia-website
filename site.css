@@ -109,6 +109,21 @@ html { scroll-behavior: smooth; }
   font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
 }
 .clients li:last-child { border-bottom: var(--rule); }
+/* Client names stay ink-coloured so the list reads as a list, not a wall of
+   links; the arrow and the purple hover carry the affordance instead. */
+.clients a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  color: var(--ink); border: 0;
+}
+.clients a:hover { color: var(--accent); }
+.clients__ext {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 400;
+  color: var(--line-soft); flex: none;
+}
+.clients a:hover .clients__ext { color: var(--accent); }
+.clients__more {
+  color: var(--meta); font-weight: 500; font-size: 15px; letter-spacing: 0;
+}
 
 /* --- work ---------------------------------------------------------------- */
 .work__frames { margin-bottom: var(--gap); }
