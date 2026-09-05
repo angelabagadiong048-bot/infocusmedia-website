@@ -1,32 +1,34 @@
-# In Focus Media — website
+# In Focus Production Co., Ltd. — website
 
-Static landing page. No build step, no dependencies. Open `index.html` in a
-browser and it works.
+One-page site. Static HTML/CSS, no build step, no dependencies. Every nav link
+is an anchor to a section further down the page.
+
+Live domain: **infocusmedia.site** (registered at Namecheap, served by Vercel).
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `index.html` | All the page content and copy |
-| `styles.css` | All styling. Colours and fonts are set at the top in `:root` |
-| `main.js` | Optional polish: scroll fade-ins, sticky header, footer year |
-| `favicon.svg` | Browser tab icon — placeholder |
-| `robots.txt` | Search engine instructions |
+| `index.html` | The whole page — all content and copy |
+| `brand.css` | The design system. Colours, type scale and components. Do not edit per-page things in here |
+| `site.css` | Page-specific styles that build on the system |
+| `main.js` | Footer year and the brief form. The page works without it |
+| `assets/logo.svg` | Full lockup, traced to vector from the supplied raster |
+| `assets/logo-mark.svg` | Camera mark only — used as the nav/footer logo via CSS mask |
+| `favicon.svg` | White mark on an ink square |
 
 ## Editing locally
-
-Double-click `index.html`, or run a local server so paths starting with `/`
-resolve correctly:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000
+Then open http://localhost:8000 — use a server rather than opening the file
+directly, so the leading-slash paths resolve.
 
 ## Deploying
 
-Every push to `main` triggers a Vercel deploy automatically:
+Every push to `main` redeploys on Vercel automatically.
 
 ```bash
 git add -A
@@ -34,22 +36,45 @@ git commit -m "Describe the change"
 git push
 ```
 
-## Still to replace
+## Wiring up the form
 
-Search the project for `REPLACE` and `TODO` to find every placeholder.
+The brief form is built and validated but has nowhere to send yet. Until an
+endpoint is set it tells the visitor to email instead — it never silently
+fails. Two options:
 
-- [ ] Real domain in `index.html` (canonical, Open Graph, email addresses) and `robots.txt`
-- [ ] Real contact details — email, WhatsApp number, LINE ID, Instagram
-- [ ] Hero backdrop — swap the CSS gradient for a showreel video or a still
-- [ ] Six real projects in the Work grid, with images
-- [ ] Real client names in the "Trusted by" strip, or delete that section
-- [ ] The About paragraphs, rewritten in the founder's own voice
-- [ ] Real numbers in the stats block (currently `00`)
-- [ ] `og-image.jpg` at 1200×630 for link previews
-- [ ] Real logo mark in `favicon.svg`
+1. **Formspree** (no code): create a form at formspree.io, then set the
+   endpoint on the `<form id="brief-form">` tag in `index.html`:
+   `action="https://formspree.io/f/YOUR_ID"`. Free tier covers 50/month.
+2. **Vercel function**: add `api/brief.js` and set `action="/api/brief"`.
+   More control, needs an email-sending service such as Resend.
 
-## Adding images
+`main.js` already POSTs `FormData` and handles both success and failure states.
 
-Put them in an `images/` folder and reference them as `/images/name.jpg`.
-Export at roughly 1600px wide for grid thumbnails and compress them —
-large photos are the usual reason a site like this feels slow.
+## Design system notes
+
+Hard-edge editorial. **No rounded corners, no gradients, no drop shadows.**
+Structure comes from 1px hairlines and 1.5px ink rules. Emphasis comes from
+weight, the purple accent, and the lime marker highlight.
+
+- Purple `#7D39EB` — section numbers, links, labels
+- Lime `#C6FF33` — one thing per screen. If two limes compete, one is wrong
+- The lime marker `.hl` highlights a phrase, never a whole sentence
+
+## Copy
+
+Source: `in-focus-website-copy-v1.md`.
+
+The hero uses **Option A** ("Every business has a person behind it").
+Options B and C are in the copy sheet; swapping means editing the `<h1>` and
+the quote beneath it, nothing else. Don't mix directions.
+
+## Still to do
+
+- [ ] Point the domain at Vercel (Vercel → Settings → Domains, then Namecheap Advanced DNS)
+- [ ] Confirm the studio address — Vichit is normally in Mueang Phuket district, not Thalang
+- [ ] Confirm which number is WhatsApp and which is the office line
+- [ ] Give the form an endpoint (above)
+- [ ] Replace the three placeholder frames in Work with real stills, then drop the "stay tuned" panel
+- [ ] Add `assets/og-image.jpg` at 1200×630 and uncomment the `og:image` tag
+- [ ] Supply the original vector logo if one exists, to replace the traced version
+- [ ] Decide whether In Focus keeps the purple/lime accents or takes its own

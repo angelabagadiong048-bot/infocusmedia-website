@@ -1,8 +1,6 @@
 # macOS
 .DS_Store
 ._*
-.Spotlight-V100
-.Trashes
 
 # Editors
 .vscode/
@@ -12,5 +10,5 @@
 # Vercel
 .vercel
 
-# Node (only relevant if the project ever gains a build step)
+# Node (only if the project ever gains a build step)
 node_modules/

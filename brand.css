@@ -1,0 +1,255 @@
+/* ==========================================================================
+   ANGELA BAGADIONG — BRAND DESIGN SYSTEM
+   Hard-edge editorial. No rounded corners, no gradients, no drop shadows.
+   Structure is drawn with 1px and 1.5px rules; emphasis comes from weight,
+   the purple accent, and the lime marker highlight.
+   ========================================================================== */
+
+/* --- 1. TOKENS ----------------------------------------------------------- */
+:root {
+  /* colour */
+  --ink:        #141414;   /* primary text, borders, inverse panels */
+  --accent:     #7D39EB;   /* purple — section numbers, links, labels */
+  --highlight:  #C6FF33;   /* lime — marker highlight, totals, accent edge */
+  --paper:      #ffffff;   /* page ground */
+  --body:       #33333a;   /* body copy */
+  --body-soft:  #42424a;   /* secondary copy */
+  --muted:      #52525a;   /* tertiary copy */
+  --meta:       #9a9a9a;   /* eyebrows, captions */
+  --line:       #E6E6E2;   /* hairline rules */
+  --line-soft:  #b9b9b4;   /* dashed rules */
+
+  /* type */
+  --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+
+  /* type scale */
+  --fs-display: clamp(40px, 8vw, 82px);
+  --fs-h1:      clamp(32px, 5vw, 46px);
+  --fs-h2:      clamp(24px, 3.4vw, 34px);
+  --fs-h3:      19px;
+  --fs-lead:    clamp(17px, 2vw, 21px);
+  --fs-body:    15px;
+  --fs-small:   13px;
+  --fs-meta:    10px;
+
+  /* rules */
+  --rule:       1px solid var(--line);
+  --rule-hard:  1.5px solid var(--ink);
+
+  /* rhythm */
+  --gap:        clamp(20px, 4vw, 34px);
+  --section-y:  clamp(44px, 8vw, 96px);
+  --measure:    62ch;
+  --page:       1180px;
+}
+
+/* --- 2. RESET ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; letter-spacing: -0.03em; line-height: 1.05; }
+p { margin: 0; text-wrap: pretty; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+a:hover { color: var(--ink); }
+
+/* --- 3. LAYOUT ----------------------------------------------------------- */
+.wrap    { width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 clamp(18px, 4vw, 48px); }
+.section { padding-block: var(--section-y); }
+.section--rule { border-top: var(--rule-hard); }
+.stack   { display: flex; flex-direction: column; gap: var(--gap); }
+.stack-s { display: flex; flex-direction: column; gap: 12px; }
+.row     { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.grid    { display: grid; gap: var(--gap); }
+.grid-2  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.split   { display: grid; gap: var(--gap); grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
+@media (max-width: 860px) {
+  .grid-2, .grid-3, .grid-4, .split { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- 4. THE MARK (three squares) ---------------------------------------- */
+.mark { display: flex; align-items: center; gap: 7px; }
+.mark i { width: 11px; height: 11px; background: var(--ink); }
+.mark i:nth-child(2) { background: var(--accent); }
+.mark i:nth-child(3) { background: var(--highlight); }
+.mark--lg i { width: 15px; height: 15px; }
+
+/* --- 5. TYPE UTILITIES --------------------------------------------------- */
+.display   { font-size: var(--fs-display); font-weight: 900; letter-spacing: -0.045em; line-height: 0.92; text-transform: uppercase; }
+.h1        { font-size: var(--fs-h1); font-weight: 900; }
+.h2        { font-size: var(--fs-h2); font-weight: 800; }
+.h3        { font-size: var(--fs-h3); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.lead      { font-size: var(--fs-lead); font-weight: 500; line-height: 1.35; color: var(--body-soft); max-width: var(--measure); }
+.body      { font-size: var(--fs-body); line-height: 1.55; color: var(--body); max-width: var(--measure); }
+.small     { font-size: var(--fs-small); line-height: 1.5; color: var(--body-soft); }
+.caption   { font-size: 12px; line-height: 1.45; color: var(--muted); }
+.strong    { font-weight: 700; color: var(--ink); }
+
+/* eyebrow / kicker — always mono, always tracked out */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--meta);
+}
+.eyebrow--accent { color: var(--accent); }
+
+/* lime marker highlight — for one phrase, never a whole sentence */
+.hl {
+  background: linear-gradient(transparent 58%, var(--highlight) 58%);
+  padding: 0 2px;
+  font-weight: 700;
+}
+
+/* pull quote */
+.quote {
+  border-top: var(--rule-hard);
+  border-bottom: var(--rule-hard);
+  padding: clamp(18px, 3vw, 30px) 0;
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 46ch;
+}
+
+/* --- 6. SECTION LABEL (numbered header) --------------------------------- */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.label__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--paper);
+  background: var(--accent);
+  padding: 3px 8px;
+  flex: none;
+}
+.label__text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.label__rule { flex: 1; height: 1.5px; background: var(--ink); }
+
+/* --- 7. CARDS & PANELS --------------------------------------------------- */
+.card {
+  border: var(--rule-hard);
+  padding: clamp(16px, 2.2vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--paper);
+}
+.card__num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.card__foot {
+  margin-top: auto;
+  border-top: var(--rule);
+  padding-top: 12px;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+/* seam grid: cards sharing hairline seams inside one hard frame */
+.seam { display: grid; gap: 1.5px; background: var(--ink); border: var(--rule-hard); }
+.seam > * { background: var(--paper); }
+
+.panel-ink  { background: var(--ink); color: var(--paper); padding: clamp(18px, 2.5vw, 30px); }
+.panel-ink .eyebrow { color: var(--highlight); }
+.panel-lime { background: var(--highlight); color: var(--ink); padding: clamp(18px, 2.5vw, 30px); }
+
+/* callout — lime edge on a hard frame */
+.callout {
+  border: var(--rule-hard);
+  border-left: 6px solid var(--highlight);
+  padding: 16px 20px;
+}
+
+/* numbered / ruled list */
+.ruled > li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-top: var(--rule);
+}
+.ruled > li:last-child { border-bottom: var(--rule); }
+.ruled__num { font-family: var(--font-mono); font-size: 12px; color: var(--line-soft); flex: none; }
+
+/* stat */
+.stat__figure { font-size: clamp(30px, 4vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.stat__label  { font-family: var(--font-mono); font-size: var(--fs-meta); letter-spacing: 0.16em; text-transform: uppercase; color: var(--meta); margin-top: 8px; }
+
+/* tag / chip */
+.tag { border: var(--rule); padding: 7px 13px; font-size: var(--fs-small); font-weight: 600; color: var(--body); }
+
+/* --- 8. BUTTONS ---------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 22px;
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: background .12s linear, color .12s linear;
+}
+.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+.btn--lime { background: var(--highlight); border-color: var(--ink); color: var(--ink); }
+.btn--lime:hover { background: var(--ink); color: var(--highlight); }
+
+/* --- 9. NAV & FOOTER ----------------------------------------------------- */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--paper);
+  border-bottom: var(--rule-hard);
+}
+.nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 14px; }
+.nav__links { display: flex; gap: 22px; flex-wrap: wrap; }
+.nav__links a {
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.nav__links a:hover { color: var(--accent); }
+@media (max-width: 700px) { .nav__links { display: none; } }
+
+.foot { border-top: var(--rule-hard); padding-block: 26px 34px; }
+.foot__inner { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; flex-wrap: wrap; }
