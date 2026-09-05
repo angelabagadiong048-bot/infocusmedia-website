@@ -64,9 +64,10 @@ weight, the purple accent, and the lime marker highlight.
 
 Source: `in-focus-website-copy-v1.md`.
 
-The hero uses **Option A** ("Every business has a person behind it").
-Options B and C are in the copy sheet; swapping means editing the `<h1>` and
-the quote beneath it, nothing else. Don't mix directions.
+The hero is a variation on **Option A**: "Every business has a story behind
+it." / "We bring that out beautifully." Options B and C are in the copy sheet;
+swapping means editing the `<h1>` and the quote beneath it, nothing else.
+Don't mix directions.
 
 ## Still to do
 
@@ -74,7 +75,7 @@ the quote beneath it, nothing else. Don't mix directions.
 - [ ] Confirm the studio address — Vichit is normally in Mueang Phuket district, not Thalang
 - [ ] Confirm which number is WhatsApp and which is the office line
 - [ ] Give the form an endpoint (above)
-- [ ] Replace the three placeholder frames in Work with real stills, then drop the "stay tuned" panel
+- [ ] Restore the Work section once there are real projects (it is commented out in `index.html`; put the nav and footer links back and renumber About to 06)
 - [ ] Add `assets/og-image.jpg` at 1200×630 and uncomment the `og:image` tag
 - [ ] Supply the original vector logo if one exists, to replace the traced version
 - [ ] Decide whether In Focus keeps the purple/lime accents or takes its own
